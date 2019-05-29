@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var isForceLandscape : Bool = false //景象翻轉設定
+    var isForcePortrait : Bool = false //影像翻轉設定
+    var isForceAllDerictions : Bool = false //支持所有方向
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -41,6 +44,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    func application(_ application : UIApplication , supportedInterfaceOrientationsFor windows : UIWindow?) -> UIInterfaceOrientationMask {
+        if isForceAllDerictions == true {
+            return .all
+        } else if isForceLandscape == true {
+            return .landscape
+        } else if isForcePortrait == true {
+            return .portrait
+        }
+        return .portrait
+    }//螢幕翻轉設定。 禁止旋轉螢幕
+    
+    // MARK: - Core Data stack
+    lazy var persistentContainer: NSPersistentContainer = {
+        // 記得替換專案名稱
+        let container = NSPersistentContainer(name: "ARRPGTEST1")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+    
+    // MARK: - Core Data Saving support
+    func saveContext () {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
 }
 

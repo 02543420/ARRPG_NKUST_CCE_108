@@ -1,0 +1,35 @@
+{
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  },
+  "resources" : [
+    {
+      "filename" : "BlackBox.arreferenceimage"
+    },
+    {
+      "filename" : "Book.arreferenceimage"
+    },
+    {
+      "filename" : "Book2.arreferenceimage"
+    },
+    {
+      "filename" : "CarKey.arreferenceimage"
+    },
+    {
+      "filename" : "CarKey(old).arreferenceimage"
+    },
+    {
+      "filename" : "CarKey2.arreferenceimage"
+    },
+    {
+      "filename" : "OPA.arreferenceimage"
+    },
+    {
+      "filename" : "OPA(old).arreferenceimage"
+    },
+    {
+      "filename" : "Snow Mountain.arreferenceimage"
+    }
+  ]
+}
